@@ -9,7 +9,6 @@ class KoraSkincare::CLI
     KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/normal-dry")
     KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/normal-sensitive")
     KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/oily-combination")
-    #KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/age-defying")
     KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/blemish-congested")
   end
 
@@ -22,7 +21,7 @@ class KoraSkincare::CLI
   def list_options
     puts ""
     puts "🌱  Welcome to KoraSkincare! 🌱 \n\nAn application to help you find organic skincare matched by your individual skin type.\n\n"
-    puts " 1. Dry \n 2. Sensitive \n 3. Oily / Combination \n 4. Age-Defying \n 5. Blemish / Congested"
+    puts " 1. Dry \n 2. Sensitive \n 3. Oily / Combination \n 4. Blemish / Congested "
     puts ""
     puts "You can type 'list' at any time to view these options again or 'exit' to exit \nthe application."
   end
@@ -48,12 +47,6 @@ class KoraSkincare::CLI
     puts KoraSkincare::Product.oily_combination.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
    puts ""
  end
-
- #def list_age_defying
-   #puts ""
-   #puts KoraSkincare::Product.age_defying.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
-   #puts ""
- #end
 
  def list_blemish_congested
    puts ""
@@ -126,10 +119,7 @@ class KoraSkincare::CLI
       puts "\n#{name}. Beautiful choice 💞 ! \nThis skincare product is #{price}. \nYou can purchase this product at: \n#{url}."
 
 
-      #elsif input == "4"
-        #list_age_defying
-
-      elsif input == "5"
+    elsif input == "4"
         list_blemish_congested
         individual_product
         choose_product = gets.strip.to_i

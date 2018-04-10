@@ -10,11 +10,6 @@ class KoraSkincare::Product
 @@all = []
 
   def initialize
-    #producthash.each {|key, value| self.send(("#{key}="), value)}
-    #@type = product_hash[:type]
-    #@name = product_hash[:name]
-    #@price = product_hash[:price]
-    #@url = product_hash[:url]
     @@all << self
   end
 
