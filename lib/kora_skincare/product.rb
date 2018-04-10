@@ -1,6 +1,7 @@
 require_relative '../../config/environment.rb'
 require_relative './product.rb'
 require_relative './cli.rb'
+require 'pry'
 
 class KoraSkincare::Product
 
@@ -8,9 +9,12 @@ class KoraSkincare::Product
 
 @@all = []
 
-  def initialize(product_hash)
+  def initialize
     #producthash.each {|key, value| self.send(("#{key}="), value)}
-    @type = product_hash[:type] 
+    #@type = product_hash[:type]
+    #@name = product_hash[:name]
+    #@price = product_hash[:price]
+    #@url = product_hash[:url]
     @@all << self
   end
 
@@ -23,30 +27,35 @@ class KoraSkincare::Product
   end
 
   def self.create_by_category(category_url)
-    KoraSkincare::Scraper.scrape_by_category_url(category_url).each do |product_hash|
-    self.new(product_hash)
+    KoraSkincare::Scraper.scrape_by_category_url(category_url).each do |product_array|
+    self.new
   end
+end
 
   def self.dry
-    @@all.collect {|product| product.type == "Dry"}
+    dry_product = @@all.select {|product| product.type == "DRY"}
+    #@@all.reject {|product| product.type != "DRY"}
+
+     #do i need to gsub white space to match this string?
+     dry_product
   end
 
   def self.sensitive
-    @@all.collect {|product| product.type == "Sensitive"}
+    @@all.reject {|product| product.type != "SENSITIVE"}
   end
 
   def self.oily_combination
-    @@all.collect {|product| product.type == "Oily / Combination"}
+    @@all.reject {|product| product.type != "OILY / COMBINATION"}
   end
 
-  def self.age_defying
-    @@all.collect {|product| product.type == "Age-defying"}
-  end
+  #def self.age_defying
+    #@@all.collect {|product| product.type == "Age-defying"}
+  #end
 
   def self.blemish_congested
-    @@all.collect {|product| product.type == "Blemish / Congested"}
+    @@all.reject {|product| product.type != "BLEMISH / CONGESTED"}
   end
 
 
-end
+
 end  # End GoodGuide::Scraper Method

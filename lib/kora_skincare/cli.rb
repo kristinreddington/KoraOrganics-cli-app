@@ -1,6 +1,7 @@
 require_relative '../../config/environment.rb'
 require_relative './scraper.rb'
 require_relative './product.rb'
+require 'pry'
 
 class KoraSkincare::CLI
 
@@ -8,7 +9,7 @@ class KoraSkincare::CLI
     KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/normal-dry")
     KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/normal-sensitive")
     KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/oily-combination")
-    KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/age-defying")
+    #KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/age-defying")
     KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/blemish-congested")
   end
 
@@ -32,50 +33,67 @@ class KoraSkincare::CLI
 
   def list_dry
     puts ""
-    puts KoraSkincare::Product.dry.each_with_index {|x, index| puts "#{index + 1}. #{x.type}"}
+    puts KoraSkincare::Product.dry.each.with_index {|x, index| puts "#{index + 1}. #{x.name}"}
     puts ""
   end
 
   def list_sensitive
     puts ""
-    puts KoraSkincare::Product.sensitive.each_with_index {|x, index| puts "#{index + 1}. #{x.type}"}
+    puts KoraSkincare::Product.sensitive.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
     puts ""
   end
 
   def list_oily_combination
     puts ""
-    puts KoraSkincare::Product.oily_combination.each_with_index {|x, index| puts "#{index + 1}. #{x.type}"}
+    puts KoraSkincare::Product.oily_combination.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
    puts ""
  end
 
- def list_age_defying
-   puts ""
-   puts KoraSkincare::Product.age_defying.each_with_index {|x, index| puts "#{index + 1}. #{x.type}"}
-   puts ""
- end
+ #def list_age_defying
+   #puts ""
+   #puts KoraSkincare::Product.age_defying.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
+   #puts ""
+ #end
 
  def list_blemish_congested
    puts ""
-   puts KoraSkincare::Product.blemish_congested.each_with_index {|x, index| puts "#{index + 1}. #{x.type}"}
+   puts KoraSkincare::Product.blemish_congested.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
    puts ""
  end
 
   def main_menu
     input = nil
+    puts "Please enter the number to the category you'd like to explore based on your skin's individual needs.\n\n"
     while input != "exit"
-      puts "Please enter the number to the category you'd like to explore based on your skin's individual needs.\n\n"
     input = gets.strip.downcase
     if input == "1"
          list_dry
 
        elsif input == "2"
           list_sensitive
+          choose_product = gets.strip.to_i
+
+        if choose_product > KoraSkincare::Product.sensitive.length
+          #invalid_choice
+          list_sensitive
+          choose_product = gets.strip.to_i
+        else
+        end
+
+        product = KoraSkincare::Product.sensitive[choose_product - 1]
+        name = product.name
+        price = product.price
+        url = product.url
+
+        puts "\n#{name}. Beautiful choice 💞 ! \nThis skincare product is #{price}. \nYou can purchase this product at: \n#{url}."
+
+
 
        elsif input == "3"
         list_oily_combination
 
-      elsif input == "4"
-        list_age_defying
+      #elsif input == "4"
+        #list_age_defying
 
       elsif input == "5"
         list_blemish_congested
@@ -85,6 +103,11 @@ class KoraSkincare::CLI
      else
        "Please choose from the list of options."
      end
+   end
+
+   def individual_products(input)
+     input = gets.strip.downcase
+     input.to_i
    end
 
 end #end KoraSkincare::CLI class
