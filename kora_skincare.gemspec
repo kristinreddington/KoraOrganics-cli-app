@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{CLI app that scrapes skincare website for product details.}
   spec.description   = %q{Kora_skincare is a gem that gives users information on skincare
                         determined by individual skintype }
-  spec.homepage      = #"Put your gem's website or public repo URL here."
+  #spec.homepage      = "Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
