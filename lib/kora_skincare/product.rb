@@ -1,10 +1,16 @@
+require_relative '../../config/environment.rb'
+require_relative './product.rb'
+require_relative './cli.rb'
+
 class KoraSkincare::Product
+
   attr_accessor :type, :description, :name, :price, :url
 
 @@all = []
 
-  def initialize(producthash)
-    producthash.each {|key, value| self.send(("#{key}="), value)}
+  def initialize(product_hash)
+    #producthash.each {|key, value| self.send(("#{key}="), value)}
+    @type = product_hash[:type] 
     @@all << self
   end
 
@@ -17,28 +23,28 @@ class KoraSkincare::Product
   end
 
   def self.create_by_category(category_url)
-    KoraSkincare::Scraper.scrape_by_category_url(category_url).each do |producthash|
-    self.new(producthash)
+    KoraSkincare::Scraper.scrape_by_category_url(category_url).each do |product_hash|
+    self.new(product_hash)
   end
 
   def self.dry
-    @@all.reject {|product| product.type != "Dry"}
+    @@all.collect {|product| product.type == "Dry"}
   end
 
   def self.sensitive
-    @@all.reject {|product| product.type != "Sensitive"}
+    @@all.collect {|product| product.type == "Sensitive"}
   end
 
   def self.oily_combination
-    @@all.reject {|product| product.type != "Oily / Combination"}
+    @@all.collect {|product| product.type == "Oily / Combination"}
   end
 
   def self.age_defying
-    @@all.reject {|product| product.type != "Age-defying"}
+    @@all.collect {|product| product.type == "Age-defying"}
   end
 
   def self.blemish_congested
-    @@all.reject {|product| product.type != "Blemish / Congested"}
+    @@all.collect {|product| product.type == "Blemish / Congested"}
   end
 
 

@@ -1,3 +1,7 @@
+require_relative '../../config/environment.rb'
+require_relative './scraper.rb'
+require_relative './product.rb'
+
 class KoraSkincare::CLI
 
   def initialize
@@ -28,31 +32,31 @@ class KoraSkincare::CLI
 
   def list_dry
     puts ""
-    puts KoraSkincare::Product.dry.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
+    puts KoraSkincare::Product.dry.each_with_index {|x, index| puts "#{index + 1}. #{x.type}"}
     puts ""
   end
 
   def list_sensitive
     puts ""
-    puts KoraSkincare::Product.sensitive.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
+    puts KoraSkincare::Product.sensitive.each_with_index {|x, index| puts "#{index + 1}. #{x.type}"}
     puts ""
   end
 
   def list_oily_combination
     puts ""
-    puts KoraSkincare::Product.oily_combination.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
+    puts KoraSkincare::Product.oily_combination.each_with_index {|x, index| puts "#{index + 1}. #{x.type}"}
    puts ""
  end
 
  def list_age_defying
    puts ""
-   puts KoraSkincare::Product.age_defying.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
+   puts KoraSkincare::Product.age_defying.each_with_index {|x, index| puts "#{index + 1}. #{x.type}"}
    puts ""
  end
 
  def list_blemish_congested
    puts ""
-   puts KoraSkincare::Product.blemish_congested.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
+   puts KoraSkincare::Product.blemish_congested.each_with_index {|x, index| puts "#{index + 1}. #{x.type}"}
    puts ""
  end
 
@@ -78,7 +82,7 @@ class KoraSkincare::CLI
 
       elsif input == "list"
           list_options
-     else 
+     else
        "Please choose from the list of options."
      end
    end
