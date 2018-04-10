@@ -11,6 +11,7 @@ class KoraSkincare::Product
 
   def initialize
     @@all << self
+    #binding.pry
   end
 
   def self.all
@@ -21,18 +22,18 @@ class KoraSkincare::Product
     @@all.clear
   end
 
-  def self.create_by_category(category_url)
-    KoraSkincare::Scraper.scrape_by_category_url(category_url).each do |product_array|
-    self.new
-  end
-end
+  #def self.create_by_category(category_url)
+    #KoraSkincare::Scraper.scrape_by_category_url(category_url).each do |product_array|
+    #self.new
+
+  #end
+#end
 
   def self.dry
     dry_product = @@all.select {|product| product.type == "DRY"}
-    #@@all.reject {|product| product.type != "DRY"}
 
-     #do i need to gsub white space to match this string?
-     dry_product
+    dry_product
+    binding.pry 
   end
 
   def self.sensitive

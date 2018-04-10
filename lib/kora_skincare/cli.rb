@@ -6,10 +6,10 @@ require 'pry'
 class KoraSkincare::CLI
 
   def initialize
-    KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/normal-dry")
-    KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/normal-sensitive")
-    KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/oily-combination")
-    KoraSkincare::Product.create_by_category("https://us.koraorganics.com/collections/blemish-congested")
+    KoraSkincare::Scraper.scrape_by_category_url("https://us.koraorganics.com/collections/normal-dry")
+    KoraSkincare::Scraper.scrape_by_category_url("https://us.koraorganics.com/collections/normal-sensitive")
+    KoraSkincare::Scraper.scrape_by_category_url("https://us.koraorganics.com/collections/oily-combination")
+    KoraSkincare::Scraper.scrape_by_category_url("https://us.koraorganics.com/collections/blemish-congested")
   end
 
   def call

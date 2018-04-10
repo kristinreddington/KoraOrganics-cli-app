@@ -10,7 +10,7 @@ class KoraSkincare::Scraper
 
   def self.scrape_by_category_url(category_url)
     page = Nokogiri::HTML(open(category_url))
-    products = []
+    #products = []
 
     page.css("div.product-item.columns.large-3").each do |product|
 
@@ -20,9 +20,11 @@ class KoraSkincare::Scraper
       new_product.price = product.css("p.price span.money").text
       new_product.url = "https://us.koraorganics.com" + product.css("p.title a").attribute("href").value
 
-      products << new_product
+      #products << new_product
+        #binding.pry
     end
-    products
+    #products
+
   end
 
 
