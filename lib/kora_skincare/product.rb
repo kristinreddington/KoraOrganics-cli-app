@@ -5,7 +5,7 @@ require 'pry'
 
 class KoraSkincare::Product
 
-  attr_accessor :type, :description, :name, :price, :url
+  attr_accessor :type, :name, :price, :url
 
   @@all = []
 
@@ -41,7 +41,6 @@ class KoraSkincare::Product
     blemish_product = @@all.select {|product| product.type == "BLEMISH / CONGESTED"}
     blemish_product
   end
-
 
 
 end  # End GoodGuide::Scraper Method

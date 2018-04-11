@@ -30,6 +30,10 @@ class KoraSkincare::CLI
     puts "Are there any listed products you would like more details on? Enter the number \nof your choice."
   end
 
+  def invalid_choice
+    puts "Please choose a number from the listed options"
+  end
+
   def list_dry
     puts ""
     dry_list = KoraSkincare::Product.dry.each.with_index {|x, index| puts "#{index + 1}. #{x.name}"}
@@ -62,92 +66,110 @@ class KoraSkincare::CLI
     input = nil
     puts "Please enter the number to the category you'd like to explore based on your skin's individual needs.\n\n"
     while input != "exit"
-    input = gets.strip.downcase
+        input = gets.strip.downcase
+
     if input == "1"
+         puts "\nReplenish skin with products that nourish, and restore the skin's moisture levels are key.\nBe sure to give skin some extra tender loving care during the colder months when \nmoisture in the air is reduced.\n\n"
          list_dry
          individual_product
-         choose_product = gets.strip.to_i
+         input = gets.strip
+         if input == "exit"
+           break
 
-        if choose_product > KoraSkincare::Product.dry.length
-          #invalid_choice
+        elsif input == "list"
+           list_options
+
+        elsif input.to_i > KoraSkincare::Product.dry.length
+          invalid_choice
           list_dry
-          choose_product = gets.strip.to_i
+          input = gets.strip
+
         else
-        end
+         product = KoraSkincare::Product.dry[input.to_i - 1]
+         name = product.name
+         price = product.price
+         url = product.url
+         description = product.description
+         puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
+       end
 
-        product = KoraSkincare::Product.dry[choose_product - 1]
-        name = product.name
-        price = product.price
-        url = product.url
-        description = product.description
-        puts "\nBeautiful choice 💞 !\n\n#{name}: #{description}. \n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
 
-
-       elsif input == "2"
+        elsif input == "2"
+          puts "\nSoothing products that avoid heating the skin and gently nourish are best to balance the skin's moisture levels and improve appearance.  Avoiding harsh chemicals and synthetic fragrances will often help in reviving sensitive skin."
           list_sensitive
           individual_product
-          choose_product = gets.strip.to_i
+          input = gets.strip
+          if input == "exit"
+            break
 
-        if choose_product > KoraSkincare::Product.sensitive.length
-          #invalid_choice
-          list_sensitive
-          choose_product = gets.strip.to_i
-        else
+         elsif input == "list"
+            list_options
+
+         elsif input.to_i > KoraSkincare::Product.sensitive.length
+           invalid_choice
+           list_sensitive
+           input = gets.strip
+
+         else
+          product = KoraSkincare::Product.sensitive[input.to_i - 1]
+          name = product.name
+          price = product.price
+          url = product.url
+          description = product.description
+          puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
         end
 
-        product = KoraSkincare::Product.sensitive[choose_product - 1]
-        name = product.name
-        price = product.price
-        url = product.url
 
-        puts "\nBeautiful choice 💞 !\n\n#{name}: #{description}. \n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
+    elsif input == "3"
+      puts "\nCarefully cleansing and refining the oilier parts of the skin is required, while being mindful of maintaining the moisture levels required on the less oily areas of the face."
+      list_oily_combination
+      individual_product
+      input = gets.strip
+      if input == "exit"
+        break
 
+     elsif input == "list"
+        list_options
 
+     elsif input.to_i > KoraSkincare::Product.oily_combination.length
+       invalid_choice
+       list_oily_combination
+       input = gets.strip
 
-       elsif input == "3"
-        list_oily_combination
-        individual_product
-        choose_product = gets.strip.to_i
-
-      if choose_product > KoraSkincare::Product.oily_combination.length
-        #invalid_choice
-        list_sensitive
-        choose_product = gets.strip.to_i
-      else
-      end
-
-      product = KoraSkincare::Product.oily_combination[choose_product - 1]
+     else
+      product = KoraSkincare::Product.oily_combination[input.to_i - 1]
       name = product.name
       price = product.price
       url = product.url
-
-      puts "\nBeautiful choice 💞 !\n\n#{name}: #{description}. \n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
-
+      description = product.description
+      puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
+    end
 
     elsif input == "4"
-        list_blemish_congested
-        individual_product
-        choose_product = gets.strip.to_i
+      puts "\nControl excess oil, gently exfoliate dead skin cells, rehydrate and minimize blemishes.  Remember to balance your lifestyle with healthy eating, lowering stress levels and drinking plenty of water, as these can sometimes play a role in skin conditions."
+      list_blemish_congested
+      individual_product
+      input = gets.strip
+      if input == "exit"
+        break
 
-      if choose_product > KoraSkincare::Product.blemish_congested.length
-        #invalid_choice
-        list_sensitive
-        choose_product = gets.strip.to_i
-      else
-      end
+     elsif input == "list"
+        list_options
 
-      product = KoraSkincare::Product.blemish_congested[choose_product - 1]
+     elsif input.to_i > KoraSkincare::Product.blemish_congested.length
+       invalid_choice
+       list_dry
+       input = gets.strip
+
+     else
+      product = KoraSkincare::Product.blemish_congested[input.to_i - 1]
       name = product.name
       price = product.price
       url = product.url
+      description = product.description
+      puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
+    end
 
-      puts "\nBeautiful choice 💞 !\n\n#{name}: #{description}. \n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
-
-
-      elsif input == "list"
-          list_options
-     else
-       "Please choose from the list of options."
      end #end else/if
    end #end while
  end #end method

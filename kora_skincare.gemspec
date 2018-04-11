@@ -9,10 +9,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ["<kristinreddington>"]
   spec.email         = ["<kristinreddington@gmail.com>"]
 
-  spec.summary       = %q{CLI app that scrapes skincare website for product details.}
+  spec.summary       = %q{CLI app that gives product details.}
   spec.description   = %q{Kora_skincare is a gem that gives users information on skincare
                         determined by individual skintype }
-  #spec.homepage      = "Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/kristinreddington/KoraOrganics-cli-app"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
