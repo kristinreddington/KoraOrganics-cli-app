@@ -32,26 +32,30 @@ class KoraSkincare::CLI
 
   def list_dry
     puts ""
-    puts KoraSkincare::Product.dry.each.with_index {|x, index| puts "#{index + 1}. #{x.name}"}
+    dry_list = KoraSkincare::Product.dry.each.with_index {|x, index| puts "#{index + 1}. #{x.name}"}
     puts ""
+    dry_list
   end
 
   def list_sensitive
     puts ""
-    puts KoraSkincare::Product.sensitive.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
+    sensitive_list = KoraSkincare::Product.sensitive.each.with_index {|x, index| puts "#{index + 1}. #{x.name}"}
     puts ""
+    sensitive_list
   end
 
   def list_oily_combination
     puts ""
-    puts KoraSkincare::Product.oily_combination.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
-   puts ""
- end
+    oily_list = KoraSkincare::Product.oily_combination.each.with_index {|x, index| puts "#{index + 1}. #{x.name}"}
+    puts ""
+    oily_list
+  end
 
  def list_blemish_congested
    puts ""
-   puts KoraSkincare::Product.blemish_congested.each_with_index {|x, index| puts "#{index + 1}. #{x.name}"}
+   blemish_list = KoraSkincare::Product.blemish_congested.each.with_index {|x, index| puts "#{index + 1}. #{x.name}"}
    puts ""
+   blemish_list
  end
 
   def main_menu

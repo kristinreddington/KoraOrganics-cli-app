@@ -9,6 +9,7 @@ class KoraSkincare::Product
 
 @@all = []
 
+
   def initialize
     @@all << self
     #binding.pry
@@ -22,26 +23,20 @@ class KoraSkincare::Product
     @@all.clear
   end
 
-  #def self.create_by_category(category_url)
-    #KoraSkincare::Scraper.scrape_by_category_url(category_url).each do |product_array|
-    #self.new
-
-  #end
-#end
-
   def self.dry
     dry_product = @@all.select {|product| product.type == "DRY"}
-
     dry_product
-    binding.pry 
-  end
+end
+
 
   def self.sensitive
-    @@all.reject {|product| product.type != "SENSITIVE"}
+    sensitive_product = @@all.select {|product| product.type == "SENSITIVE"}
+    sensitive_product
   end
 
   def self.oily_combination
-    @@all.reject {|product| product.type != "OILY / COMBINATION"}
+    oily_product = @@all.select {|product| product.type == "OILY / COMBINATION"}
+    oily_product
   end
 
   #def self.age_defying
@@ -49,7 +44,8 @@ class KoraSkincare::Product
   #end
 
   def self.blemish_congested
-    @@all.reject {|product| product.type != "BLEMISH / CONGESTED"}
+    blemish_product = @@all.select {|product| product.type == "BLEMISH / CONGESTED"}
+    blemish_product
   end
 
 
