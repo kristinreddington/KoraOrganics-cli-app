@@ -7,12 +7,11 @@ class KoraSkincare::Product
 
   attr_accessor :type, :description, :name, :price, :url
 
-@@all = []
+  @@all = []
 
 
   def initialize
     @@all << self
-    #binding.pry
   end
 
   def self.all
@@ -26,8 +25,7 @@ class KoraSkincare::Product
   def self.dry
     dry_product = @@all.select {|product| product.type == "DRY"}
     dry_product
-end
-
+  end
 
   def self.sensitive
     sensitive_product = @@all.select {|product| product.type == "SENSITIVE"}
@@ -38,10 +36,6 @@ end
     oily_product = @@all.select {|product| product.type == "OILY / COMBINATION"}
     oily_product
   end
-
-  #def self.age_defying
-    #@@all.collect {|product| product.type == "Age-defying"}
-  #end
 
   def self.blemish_congested
     blemish_product = @@all.select {|product| product.type == "BLEMISH / CONGESTED"}

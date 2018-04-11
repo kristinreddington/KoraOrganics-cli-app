@@ -79,7 +79,8 @@ class KoraSkincare::CLI
         name = product.name
         price = product.price
         url = product.url
-        puts "\n#{name}. Beautiful choice 💞 ! \nThis skincare product is #{price}. \nYou can purchase this product at: \n#{url}."
+        description = product.description
+        puts "\nBeautiful choice 💞 !\n\n#{name}: #{description}. \n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
 
 
        elsif input == "2"
@@ -99,7 +100,7 @@ class KoraSkincare::CLI
         price = product.price
         url = product.url
 
-        puts "\n#{name}. Beautiful choice 💞 ! \nThis skincare product is #{price}. \nYou can purchase this product at: \n#{url}."
+        puts "\nBeautiful choice 💞 !\n\n#{name}: #{description}. \n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
 
 
 
@@ -120,7 +121,7 @@ class KoraSkincare::CLI
       price = product.price
       url = product.url
 
-      puts "\n#{name}. Beautiful choice 💞 ! \nThis skincare product is #{price}. \nYou can purchase this product at: \n#{url}."
+      puts "\nBeautiful choice 💞 !\n\n#{name}: #{description}. \n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
 
 
     elsif input == "4"
@@ -140,7 +141,7 @@ class KoraSkincare::CLI
       price = product.price
       url = product.url
 
-      puts "\n#{name}. Beautiful choice 💞 ! \nThis skincare product is #{price}. \nYou can purchase this product at: \n#{url}."
+      puts "\nBeautiful choice 💞 !\n\n#{name}: #{description}. \n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
 
 
       elsif input == "list"
