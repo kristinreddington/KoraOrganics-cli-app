@@ -74,13 +74,18 @@ class KoraSkincare::CLI
      elsif input == "list"
         list_options
 
-     elsif (input != '0') && (input.to_i.to_s != input.strip) || (input.to_i > KoraSkincare::Product.dry.length)
+      elsif input.to_i > KoraSkincare::Product.dry.length
         invalid_choice
         list_dry
         input = gets.strip
 
+        product = KoraSkincare::Product.dry[input.to_i - 1]
+        name = product.name
+        price = product.price
+        url = product.url
+        puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
+
       else
-        #input.to_i <= KoraSkincare::Product.dry.length
         product = KoraSkincare::Product.dry[input.to_i - 1]
         name = product.name
         price = product.price
@@ -105,6 +110,12 @@ class KoraSkincare::CLI
         invalid_choice
         list_sensitive
         input = gets.strip
+
+        product = KoraSkincare::Product.sensitive[input.to_i - 1]
+        name = product.name
+        price = product.price
+        url = product.url
+        puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
 
       else
         product = KoraSkincare::Product.sensitive[input.to_i - 1]
@@ -132,6 +143,12 @@ class KoraSkincare::CLI
        list_oily_combination
        input = gets.strip
 
+       product = KoraSkincare::Product.oily_combination[input.to_i - 1]
+       name = product.name
+       price = product.price
+       url = product.url
+       puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
+
      else
       product = KoraSkincare::Product.oily_combination[input.to_i - 1]
       name = product.name
@@ -154,8 +171,15 @@ class KoraSkincare::CLI
 
     elsif input.to_i > KoraSkincare::Product.blemish_congested.length
       invalid_choice
-      list_dry
+      list_blemish_congested
       input = gets.strip
+
+      product = KoraSkincare::Product.blemish_congested[input.to_i - 1]
+      name = product.name
+      price = product.price
+      url = product.url
+      puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
+
 
      else
        product = KoraSkincare::Product.blemish_congested[input.to_i - 1]

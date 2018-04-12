@@ -1,11 +1,3 @@
-require_relative '../../config/environment.rb'
-require_relative './product.rb'
-require_relative './cli.rb'
-require 'open-uri'
-require 'nokogiri'
-require 'pry'
-
-
 class KoraSkincare::Scraper
 
   def self.scrape_by_category_url(category_url)

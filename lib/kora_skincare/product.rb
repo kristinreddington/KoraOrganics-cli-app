@@ -1,8 +1,3 @@
-require_relative '../../config/environment.rb'
-require_relative './product.rb'
-require_relative './cli.rb'
-require 'pry'
-
 class KoraSkincare::Product
 
   attr_accessor :type, :name, :price, :url
