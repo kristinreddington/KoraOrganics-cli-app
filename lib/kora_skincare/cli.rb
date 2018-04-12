@@ -1,8 +1,3 @@
-require_relative '../../config/environment.rb'
-require_relative './scraper.rb'
-require_relative './product.rb'
-require 'pry'
-
 class KoraSkincare::CLI
 
   def initialize
@@ -79,17 +74,17 @@ class KoraSkincare::CLI
      elsif input == "list"
         list_options
 
-     elsif input.to_i > KoraSkincare::Product.dry.length
+     elsif (input != '0') && (input.to_i.to_s != input.strip) || (input.to_i > KoraSkincare::Product.dry.length)
         invalid_choice
         list_dry
         input = gets.strip
 
       else
+        #input.to_i <= KoraSkincare::Product.dry.length
         product = KoraSkincare::Product.dry[input.to_i - 1]
         name = product.name
         price = product.price
         url = product.url
-        description = product.description
         puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
       end
 
@@ -116,7 +111,6 @@ class KoraSkincare::CLI
         name = product.name
         price = product.price
         url = product.url
-        description = product.description
         puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
       end
 
@@ -143,7 +137,6 @@ class KoraSkincare::CLI
       name = product.name
       price = product.price
       url = product.url
-      description = product.description
       puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
     end
 
@@ -169,7 +162,6 @@ class KoraSkincare::CLI
        name = product.name
        price = product.price
        url = product.url
-       description = product.description
        puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
      end
 
