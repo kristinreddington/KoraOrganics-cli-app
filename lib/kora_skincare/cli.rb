@@ -173,6 +173,13 @@ class KoraSkincare::CLI
        puts "\nBeautiful choice 💞 !\n\n#{name}:\n\nThis skincare product is #{price}. \n\nYou can purchase this product at: \n#{url}."
      end
 
+   elsif input == "exit"
+     break
+   elsif input == "list"
+     list_options
+   else
+     invalid_choice
+
      end #end else/if
    end #end while
  end #end method
